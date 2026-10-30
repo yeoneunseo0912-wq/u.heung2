@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap">
   <style>
 /* 유흥 동문회 레크리에이션 - 스타일 (슬라이드 방식) */
 :root {
@@ -27,17 +27,17 @@
   --sky: #5cc8ff;
   --danger: #ff5c6c;
   --radius: 18px;
-  --bar-h: 50px;
+  --bar-h: 0px;
   /* 슬라이드 화면 비율 (PPT 16:9). 4:3으로 바꾸려면 --rw: 4; --rh: 3; */
   --rw: 16;
   --rh: 9;
-  --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --font: "Jua", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
   --display: "Black Han Sans", var(--font);
 }
 
 * { box-sizing: border-box; }
 html {
-  font-size: clamp(14px, calc(0.85vh + 7px), 19px);
+  font-size: clamp(18px, 2.4vh, 30px);
   height: 100%; overflow: hidden; -webkit-text-size-adjust: 100%;
 }
 body {
@@ -47,7 +47,7 @@ body {
     radial-gradient(800px 500px at 100% 20%, rgba(92, 200, 255, .13), transparent 60%),
     radial-gradient(900px 600px at 20% 100%, rgba(177, 140, 255, .14), transparent 60%),
     var(--bg);
-  word-break: keep-all;
+  word-break: keep-all; font-synthesis: none;
 }
 button, input, select, textarea { font: inherit; color: inherit; }
 [hidden] { display: none !important; }
@@ -97,7 +97,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .panel.from-left { --dx: -48px; }
 .panel.from-right { --dx: 48px; }
 @keyframes slide-in { from { opacity: 0; transform: translateX(var(--dx, 0)); } to { opacity: 1; transform: none; } }
-.panel .inner { margin: auto; width: 100%; max-width: 1240px; }
+.panel .inner { margin: auto; width: 100%; max-width: 1500px; }
 
 .sec-head { margin-bottom: clamp(8px, 1.8cqh, 20px); }
 .kicker { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
@@ -476,7 +476,7 @@ dialog::backdrop { background: rgba(5, 5, 15, .7); backdrop-filter: blur(4px); }
 </head>
 <body>
 
-<header class="topbar" id="topbar">
+<header class="topbar" id="topbar" hidden>
   <a class="brand" href="#intro" id="brand">유흥 동문회</a>
   <nav class="nav" id="nav" aria-label="페이지 이동"></nav>
 </header>
@@ -1580,7 +1580,7 @@ window.RECREATION = {
     var rw = parseFloat(cs.getPropertyValue('--rw')) || 16, rh = parseFloat(cs.getPropertyValue('--rh')) || 9;
     var portrait = box.height > box.width;
     var h = portrait ? box.height : Math.min(box.height, box.width * rh / rw);
-    document.documentElement.style.fontSize = Math.max(14, Math.min(19, 0.0085 * h + 7)) + 'px';
+    document.documentElement.style.fontSize = Math.max(18, Math.min(30, 0.024 * h)) + 'px';
   }
   window.addEventListener('resize', fitType);
   fitType();

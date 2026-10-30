@@ -514,6 +514,20 @@ input, textarea { text-align: center; }
 }
 .pad-title { text-align: center; }
 
+/* 설명(게임 시작 화면의 규칙/점수/주제)은 왼쪽 정렬, 타이머 화면은 위아래 가운데 */
+.info-card { text-align: left; align-items: stretch; }
+.info-card h3 { text-align: left; }
+.info-card .bullets { justify-items: stretch; }
+.info-card .bullets li { text-align: left; padding-left: 18px; }
+.info-card .bullets li::before { position: absolute; left: 2px; top: .62em; margin: 0; display: block; }
+.info-card .kv { justify-content: space-between; }
+.info-card .ex, .info-card .ex p, .info-card .muted, .info-card .hint { text-align: left; }
+.info-card .formula-box { text-align: center; }
+.puzzle-msg:empty { display: none; }
+.puzzle-card { justify-content: center; }
+.timer { margin: 0 auto; }
+.info-card { justify-content: flex-start; }
+
 </style>
 </head>
 <body>

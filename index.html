@@ -738,7 +738,8 @@ window.RECREATION = {
   /* ---------- 7. GAME 04  텔레파시 ----------
    *  제시어는 사회자가 말로 전달합니다. 팀마다 2개 조(A-1조, A-2조 ...)가 답을 내고,
    *  조가 얻은 점수는 소속 팀 점수에 합산됩니다.
-   *  점수 = (조 수 + 1 - 서로 다른 답변의 종류 수) x scoreUnit, 중복되지 않은 답을 낸 조만 획득
+   *  점수 = (조 수 + 1 - 중복되지 않은 답변 수) x scoreUnit
+   *  (중복된 답변은 제외하고, 겹치지 않은 답변의 개수만 뺌. 그 답을 낸 조만 점수 획득)
    */
   telepathy: {
     no: "GAME 04",
@@ -752,8 +753,9 @@ window.RECREATION = {
       "답변을 공개한 뒤, 중복되지 않은 답을 고른 조에 점수를 줍니다."
     ],
     scoringTitle: "점수",
-    formula: ["점수 = (조 수 + 1", "− 서로 다른 답변의 종류 수) × 10점"],
+    formula: ["점수 = (조 수 + 1", "− 중복되지 않은 답변 수) × 10점"],
     scoringNotes: [
+      "중복된 답변은 제외하고, 겹치지 않은 답변의 개수만 셉니다.",
       "중복되지 않은 답을 낸 조만 점수를 얻습니다.",
       "조가 얻은 점수는 소속 팀 점수에 합산됩니다."
     ],
@@ -1449,14 +1451,17 @@ window.RECREATION = {
   });
 
   /* ================= GAME 04 텔레파시 ================= */
-  /* answers: 조별 답변(팀 순서대로 A-1, A-2, B-1 ...). 점수 = (조 수 + 1 - 답 종류 수) x UNIT */
+  /* answers: 조별 답변(팀 순서대로 A-1, A-2, B-1 ...). 점수 = (조 수 + 1 - 중복되지 않은 답변 수) x UNIT
+   * 중복된 답변은 제외하고, 겹치지 않은(1개 조만 낸) 답변의 개수만 센다. 그 답을 낸 조만 점수를 받는다. */
   function calcTelepathy(answers) {
     var norm = function (a) { return String(a || '').replace(/\s+/g, '').toLowerCase(); };
-    var vals = answers.map(norm), counts = {}, kinds = 0;
-    vals.forEach(function (v) { if (!v) return; if (!counts[v]) { counts[v] = 0; kinds++; } counts[v]++; });
-    var base = answers.length + 1, pts = Math.max(0, base - kinds) * UNIT;
+    var vals = answers.map(norm), counts = {}, uniq = 0;
+    vals.forEach(function (v) { if (v) counts[v] = (counts[v] || 0) + 1; });
+    Object.keys(counts).forEach(function (k) { if (counts[k] === 1) uniq++; });
+    var filled = vals.filter(function (v) { return v; }).length;   // 답을 낸 조 수
+    var base = filled + 1, pts = uniq ? Math.max(0, base - uniq) * UNIT : 0;
     return {
-      base: base, kinds: kinds, pts: pts, counts: counts,
+      base: base, uniq: uniq, pts: pts, counts: counts,
       per: vals.map(function (v) { return v && counts[v] === 1 ? pts : 0; }),
       dup: vals.map(function (v) { return v && counts[v] > 1; })
     };
@@ -1472,7 +1477,7 @@ window.RECREATION = {
       '<div class="formula-box"><strong>' + esc(T.formula[0]) + '</strong><span>' + esc(T.formula[1]) + '</span></div>' +
       list(T.scoringNotes, 'bullets tight') +
       '<div class="ex"><p class="muted">예시: ' + order.map(function (a) { return esc(a) + ' ' + tally[a] + '조'; }).join(' / ') + '</p>' +
-      '<p>(' + ex.base + ' − ' + ex.kinds + '종류) × ' + UNIT + ' = <b>' + ex.pts + '점</b>' +
+      '<p>(' + ex.base + ' − 중복 없는 답 ' + ex.uniq + '개) × ' + UNIT + ' = <b>' + ex.pts + '점</b>' +
       (uniq.length ? ' (' + uniq.map(esc).join(', ') + ' 조 획득)' : '') + '</p></div>';
     infoSlide(root, T, { scoringHtml: scoring });
   });
@@ -1509,7 +1514,7 @@ window.RECREATION = {
         var s = 0; for (var k = 0; k < GROUPS; k++) s += lastRes.per[i * GROUPS + k]; return s;
       });
       sum.innerHTML = any
-        ? '(' + lastRes.base + ' − 서로 다른 답 ' + lastRes.kinds + '종류) × ' + UNIT + ' = <b>' + lastRes.pts + '점</b> (중복 없는 조만 획득)' +
+        ? '(' + lastRes.base + ' − 중복 없는 답 ' + lastRes.uniq + '개) × ' + UNIT + ' = <b>' + lastRes.pts + '점</b> (중복 없는 조만 획득)' +
           '<div class="team-gain">' + D.teams.map(function (_, i) { return nameTag(i) + ' <b>+' + perTeam[i] + '</b>'; }).join(' / ') + '</div>'
         : '조별 답변을 입력하면 점수가 자동 계산돼요.';
       applyBtn.disabled = !any || applied || !lastRes.per.some(function (p) { return p > 0; });

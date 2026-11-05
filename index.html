@@ -180,26 +180,8 @@ h3 { margin: 0 0 8px; font-size: 1.05rem; }
 /* ---------- 노래 퀴즈 ---------- */
 .song-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
 @media (max-width: 860px) { .song-grid { grid-template-columns: minmax(0, 1fr); } }
-.now-card { text-align: center; display: grid; gap: 8px; align-content: center; }
-.qno { font-weight: 800; letter-spacing: .1em; color: var(--muted); }
-.now-main { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 2cqw, 28px); flex-wrap: wrap; }
-.now-decade { font-family: var(--display); font-size: clamp(3rem, min(9cqw, 17cqh), 6.4rem); color: var(--amber); line-height: 1.05; }
-.now-level { font-family: var(--display); font-size: clamp(2.6rem, min(7cqw, 13cqh), 5rem); width: 1.5em; height: 1.5em; display: grid; place-items: center; border-radius: 22px; line-height: 1; }
-.now-pts { font-size: 1.25rem; color: var(--muted); }
-.now-pts b { color: var(--mint); font-size: 1.6rem; }
 .nav-row { justify-content: center; margin-top: 4px; }
-.q-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
-.q-col { background: rgba(255, 255, 255, .04); border-radius: 12px; padding: 8px; }
-.q-dec { font-weight: 800; font-size: .85rem; margin-bottom: 6px; }
-.q-cells { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.q-cell { appearance: none; cursor: pointer; border: 1px solid var(--line); border-radius: 8px; padding: 6px 0; font-weight: 800; font-size: .92rem; background: rgba(255, 255, 255, .05); color: var(--muted); }
-.q-cell.past { opacity: .45; }
-.q-cell.on { background: var(--amber); color: #15173f; border-color: transparent; opacity: 1; box-shadow: 0 0 0 3px rgba(179, 173, 255, .35); }
 .lv { display: inline-block; padding: 2px 10px; border-radius: 6px; font-weight: 800; font-size: .85rem; background: rgba(255, 255, 255, .1); }
-.lv-하 { background: rgba(255, 255, 255, .1); color: var(--text); }
-.lv-중 { background: rgba(179, 173, 255, .2); color: var(--amber); }
-.lv-상 { background: rgba(179, 173, 255, .32); color: var(--amber); }
-.q-cell.on.lv-하, .q-cell.on.lv-중, .q-cell.on.lv-상 { background: var(--amber); color: #15173f; }
 
 /* ---------- 점수 패드 ---------- */
 .scorepad { background: rgba(255, 255, 255, .04); border: 1px dashed var(--line); border-radius: var(--radius); padding: 10px 12px; display: grid; gap: 6px; }
@@ -346,7 +328,6 @@ dialog::backdrop { background: rgba(5, 5, 15, .7); backdrop-filter: blur(4px); }
   .sp-row { grid-template-columns: 1fr 44px; }
   .sp-btns { grid-column: 1 / -1; justify-content: flex-start; }
   .pd { grid-template-columns: 52px 1fr auto; padding: 10px; }
-  .q-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 /* ---------- 게임 시작 화면 ---------- */
 .info-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); align-items: stretch; }
@@ -475,7 +456,7 @@ dialog::backdrop { background: rgba(5, 5, 15, .7); backdrop-filter: blur(4px); }
 /* =====================================================================
  *  네모 박스 안의 내용은 가로/세로 모두 가운데 정렬
  * ===================================================================== */
-.card, .kind, .option, .result, .set-btn, .q-col, .team-tile, .board-card {
+.card, .kind, .option, .result, .set-btn, .team-tile, .board-card {
   display: flex; flex-direction: column; justify-content: center; text-align: center;
 }
 .card > *, .board-card > * { max-width: 100%; }
@@ -529,10 +510,46 @@ input, textarea { text-align: center; }
 .info-card { justify-content: flex-start; }
 
 /* 노래 퀴즈: 한 번 선택한 칸은 다시 선택할 수 없음 */
-.q-cell:disabled { cursor: not-allowed; }
-.q-cell.used:not(.on) { opacity: .3; text-decoration: line-through; }
-.q-cell:not(:disabled):hover { background: rgba(255, 255, 255, .14); color: var(--text); }
-.now-decade.idle { font-size: clamp(2rem, min(6cqw, 11cqh), 4rem); color: var(--muted); }
+
+/* 노래 퀴즈 (번호 선택 + 정답 보기) */
+.song-card { display: flex; flex-direction: column; justify-content: center; gap: clamp(10px, 2cqh, 20px); text-align: center; }
+.song-now { display: grid; gap: 6px; justify-items: center; }
+.song-no { font-family: var(--display); font-size: clamp(1.4rem, min(3.4cqw, 6cqh), 2.6rem); color: var(--muted); }
+.song-ans { font-family: var(--display); font-size: clamp(2.2rem, min(7cqw, 13cqh), 5rem); line-height: 1.15; color: var(--muted); min-height: 1.2em; word-break: keep-all; overflow-wrap: anywhere; }
+.song-ans.open { color: var(--amber); font-size: clamp(1.8rem, min(4.4cqw, 9cqh), 3.4rem); }
+.pick-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.pick { appearance: none; cursor: pointer; border: 1px solid var(--line); border-radius: 12px; padding: .5em 0; font-weight: 800; font-size: 1.15rem; background: rgba(255, 255, 255, .08); color: var(--text); }
+.pick.wide { grid-column: 1 / -1; }
+.pick:hover { background: rgba(255, 255, 255, .16); }
+.pick.used { opacity: .35; }
+.pick.on { background: var(--amber); color: #15173f; border-color: transparent; opacity: 1; box-shadow: 0 0 0 3px rgba(179, 173, 255, .35); }
+@media (max-width: 600px) { .pick-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* 텔레파시 생각 시간 타이머 */
+.think { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; padding: 4px 0 8px; border-bottom: 1px dashed var(--line); margin-bottom: 6px; }
+.think-lab { color: var(--muted); font-size: 1.05rem; }
+.think .time { font-size: clamp(2.4rem, min(6cqw, 10cqh), 4rem); }
+.think-btns { display: flex; gap: 8px; }
+@media (max-height: 740px) { .think .time { font-size: 2.4rem; } .think { padding-bottom: 4px; } }
+
+/* 노래 퀴즈 화면 정리 (작은 화면에서도 한 장에 들어가게) */
+.song-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.song-grid .sp-row { grid-template-columns: 4.6em 2.4em auto; column-gap: .5em; padding-left: 6px; padding-right: 6px; }
+.song-grid .sp-btns { flex-wrap: nowrap; gap: 4px; }
+.song-grid .sp-btns .btn { min-width: 0; padding: 4px 7px; }
+.pick.wide { grid-column: span 2; }
+.pick:disabled { cursor: not-allowed; }
+.think .time.warn { color: var(--amber); animation: none; }
+.think .time.done { color: var(--danger); }
+@media (max-height: 740px) {
+  .song-card { gap: 6px; }
+  .song-ans { font-size: 2.6rem; min-height: 1.1em; }
+  .song-ans.open { font-size: 2.1rem; }
+  .song-no { font-size: 1.3rem; }
+  .pick-grid { gap: 5px; }
+  .pick { padding: .3em 0; font-size: 1rem; }
+}
+@media (max-width: 860px) { .song-grid { grid-template-columns: minmax(0, 1fr); } }
 
 </style>
 </head>
@@ -628,8 +645,11 @@ window.RECREATION = {
   interimKeys: ["song", "simsim", "charades", "telepathy"],
 
   /* ---------- 3. GAME 01  노래 퀴즈 ----------
-   *  노래는 따로 재생하고, 진행 화면에서는 현재 년대/난이도 표시와 점수 입력만 합니다.
-   *  levelPoints: 난이도별 정답 점수 (시작 화면 점수표와 점수 버튼에 같이 쓰임)
+   *  노래는 진행자가 휴대폰으로 따로 재생합니다. 이 화면에는 번호별 정답만 들어 있고,
+   *  번호를 누르면 "정답 보기"로 가수 - 제목을 확인할 수 있습니다.
+   *  questions : 정규 문제 (적은 순서대로 1번, 2번 ...)
+   *  extra     : 추가 문제 (맨 아래 "추가" 버튼)
+   *  padSteps  : 점수 입력 버튼 (진행자가 임의로 부여)
    */
   song: {
     no: "GAME 01",
@@ -637,12 +657,33 @@ window.RECREATION = {
     title: "노래 퀴즈",
     rulesTitle: "진행 방법",
     rules: [
-      "노래 초반부를 듣고, 가장 먼저 팀명을 외친 사람에게 답할 기회가 주어집니다.",
+      "노래 전주를 듣고, 가장 먼저 팀명을 외친 사람에게 답할 기회가 주어집니다.",
       "정답은 “가수 이름 - 노래 제목” 순서로 말해야만 인정됩니다."
     ],
-    decades: ["1990년대", "2000년대", "2010년대", "2020년대"],
-    levels: ["하", "중", "상"],
-    levelPoints: { "하": 10, "중": 20, "상": 30 }
+    scoringTitle: "점수",
+    scoring: ["정답을 맞힌 팀에게 진행자가 점수를 부여합니다."],
+    questions: [
+      "박진영 - 허니",
+      "김건모 - 잘못된 만남",
+      "H.O.T - 캔디",
+      "코요태 - 순정",
+      "싸이 - 챔피언",
+      "소녀시대 - Gee",
+      "빅뱅 - 거짓말",
+      "쿨 - 아로하",
+      "여자친구 - 시간을 달려서",
+      "멜로망스 - 선물",
+      "투모로우바이투게더 - 9와 4분의 3 승강장에서 너를 기다려",
+      "소유 & 정기고 - 썸",
+      "아이브 - LOVE DIVE",
+      "아이유 - 에잇",
+      "비비 - 밤양갱",
+      "빅뱅 - 봄 여름 가을 겨울"
+    ],
+    extra: [
+      "소유 & 정기고 - 썸"
+    ],
+    padSteps: [10, 20, 30, 40, 50]
   },
 
   /* ---------- 4. GAME 02  이심전심 ----------
@@ -752,6 +793,7 @@ window.RECREATION = {
       "사회자에게 개인 메시지로 답을 제출합니다.",
       "답변을 공개한 뒤, 중복되지 않은 답을 고른 조에 점수를 줍니다."
     ],
+    thinkSeconds: 10,   /* 제시어를 말한 뒤 주는 생각 시간(초) */
     scoringTitle: "점수",
     formula: ["점수 = (조 수 + 1", "− 중복되지 않은 답변 수) × 10점"],
     scoringNotes: [
@@ -959,6 +1001,20 @@ window.RECREATION = {
     } catch (e) {}
   }
 
+  /* 째깍 소리 (1초마다) */
+  function tick(strong) {
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      var o = audioCtx.createOscillator(), g = audioCtx.createGain(), t0 = audioCtx.currentTime;
+      o.type = 'square'; o.frequency.value = strong ? 1200 : 900;
+      o.connect(g); g.connect(audioCtx.destination);
+      g.gain.setValueAtTime(0.0001, t0);
+      g.gain.exponentialRampToValueAtTime(strong ? 0.22 : 0.14, t0 + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.07);
+      o.start(t0); o.stop(t0 + 0.09);
+    } catch (e) {}
+  }
+
   /* ---------------------------------------------------------------
    *  타이머
    * ------------------------------------------------------------- */
@@ -977,8 +1033,10 @@ window.RECREATION = {
         try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
         endAt = Date.now() + left * 1000;
         id = setInterval(function () {
+          var prev = left;
           left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
           api.render();
+          if (left !== prev && left > 0 && opts.onTick) opts.onTick(left);
           if (left <= 0) { clearInterval(id); id = null; beep(3); if (opts.onEnd) opts.onEnd(); if (opts.onState) opts.onState(); }
         }, 200);
         if (opts.onState) opts.onState();
@@ -1169,93 +1227,74 @@ window.RECREATION = {
 
   /* ================= GAME 01 노래 퀴즈 ================= */
   section('song', '노래 퀴즈', function (root) {
-    var S = D.song;
-    infoSlide(root, S, {
-      scoringHtml: scoringBlock(S.levels.map(function (l) { return ['난이도 ' + l, S.levelPoints[l] + '점']; })),
-      topicsHtml: list([S.decades.join(' / '), '각 년대마다 ' + S.levels.length + '문제씩 (' + S.levels.join(' / ') + ')'])
-    });
+    infoSlide(root, D.song);
   });
 
   section('song-play', null, function (root) {
     var S = D.song;
-    var qs = [];
-    S.decades.forEach(function (d) { S.levels.forEach(function (l) { qs.push({ decade: d, level: l }); }); });
-    var idx = Store.s.songIdx;                       // 지금 고른 칸 (-1 = 아직 없음)
-    var used = {};                                   // 이미 고른 칸 (다시 고를 수 없음)
+    var qs = S.questions.map(function (t, i) { return { label: String(i + 1), text: t }; })
+      .concat((S.extra || []).map(function (t, i) { return { label: '추가' + (S.extra.length > 1 ? ' ' + (i + 1) : ''), text: t, extra: true }; }));
+    var idx = Store.s.songIdx;                       // 지금 고른 문제 (-1 = 아직 없음)
+    var used = {};                                   // 이미 나온 문제 (흐리게 표시)
     (Store.s.songUsed || []).forEach(function (n) { if (n >= 0 && n < qs.length) used[n] = true; });
     if (!(idx >= 0 && idx < qs.length)) idx = -1;
+    var revealed = false;
 
     root.innerHTML = head({ tag: S.tag, no: S.no, title: S.title }) +
       '<div class="song-grid">' +
-      '<div class="card now-card">' +
-      '<div class="qno" id="songQ"></div>' +
-      '<div class="now-main"><div class="now-decade" id="songDecade"></div><div class="now-level" id="songLevel"></div></div>' +
-      '<div class="now-pts" id="songPts"></div>' +
-      '<div class="q-grid" id="songGrid"></div>' +
-      '<div class="btn-row nav-row"></div></div>' +
+      '<div class="card song-card">' +
+      '<div class="song-now"><div class="song-no" id="songNo"></div><div class="song-ans" id="songAns"></div></div>' +
+      '<div class="btn-row"><span id="revealSlot"></span></div>' +
+      '<div class="pick-grid" id="songGrid"></div>' +
+      '<div class="btn-row"><span id="resetSlot"></span></div></div>' +
       '<div class="pad-slot"></div></div>';
 
-    var qEl = $('#songQ', root), decEl = $('#songDecade', root), lvEl = $('#songLevel', root), ptsEl = $('#songPts', root);
-    var steps = Object.keys(S.levelPoints).map(function (k) { return S.levelPoints[k]; })
-      .filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; });
-    var pad = scorePad('song', steps, '정답 팀 점수');
-    $('.pad-slot', root).append(pad);
+    var noEl = $('#songNo', root), ansEl = $('#songAns', root);
+    $('.pad-slot', root).append(scorePad('song', S.padSteps || [10, 20, 30], '정답 팀 점수'));
 
-    var undoPick = button('방금 고른 칸 취소', 'ghost sm', function () {
-      if (idx < 0) return;
-      delete used[idx]; idx = -1; show();
+    var revealBtn = button('정답 보기', 'primary', function () { if (idx < 0) return; revealed = !revealed; show(); });
+    var resetBtn = button('선택 기록 초기화', 'ghost sm', function () {
+      if (!Object.keys(used).length && idx < 0) return;
+      if (window.confirm('고른 문제 기록을 모두 지우고 처음부터 다시 시작할까요?')) { used = {}; idx = -1; revealed = false; show(); }
     });
-    var resetPick = button('선택 기록 초기화', 'ghost sm', function () {
-      if (!Object.keys(used).length) return;
-      if (window.confirm('고른 칸 기록을 모두 지우고 처음부터 다시 시작할까요?')) { used = {}; idx = -1; show(); }
-    });
-    $('.nav-row', root).append(undoPick, resetPick);
+    $('#revealSlot', root).replaceWith(revealBtn);
+    $('#resetSlot', root).replaceWith(resetBtn);
 
     var grid = $('#songGrid', root), cells = [];
-    S.decades.forEach(function (d, di) {
-      var col = el('<div class="q-col"><div class="q-dec">' + esc(d) + '</div><div class="q-cells"></div></div>');
-      S.levels.forEach(function (l, li) {
-        var n = di * S.levels.length + li;
-        var cell = button(l, 'q-cell lv-' + l, function () {
-          if (used[n]) return;                       // 한 번 고른 칸은 다시 못 고름
-          used[n] = true; idx = n; show();
-        });
-        cells.push(cell);
-        $('.q-cells', col).append(cell);
+    qs.forEach(function (q, n) {
+      var cell = button(q.label, 'pick' + (q.extra ? ' wide' : ''), function () {
+        if (idx === n) { delete used[n]; idx = -1; revealed = false; show(); return; }   // 방금 고른 칸을 다시 누르면 취소
+        if (used[n]) return;                                                          // 이미 나온 문제는 다시 고를 수 없음
+        used[n] = true; idx = n; revealed = false; show();
       });
-      grid.append(col);
+      cells.push(cell); grid.append(cell);
     });
 
     function show() {
-      var done = Object.keys(used).length;
       if (idx >= 0) {
-        var q = qs[idx], pts = S.levelPoints[q.level];
-        qEl.textContent = '진행 ' + done + ' / ' + qs.length;
-        decEl.className = 'now-decade'; decEl.textContent = q.decade;
-        lvEl.hidden = false; lvEl.textContent = q.level; lvEl.className = 'now-level lv-' + q.level;
-        ptsEl.innerHTML = '정답 <b>+' + pts + '점</b>';
-        pad.setHighlight(pts);
+        var q = qs[idx];
+        noEl.textContent = q.extra ? '추가 문제' : q.label + '번 문제';
+        ansEl.className = 'song-ans' + (revealed ? ' open' : '');
+        ansEl.textContent = revealed ? q.text : '?';
+        revealBtn.textContent = revealed ? '정답 숨기기' : '정답 보기';
+        revealBtn.disabled = false;
       } else {
-        qEl.textContent = '진행 ' + done + ' / ' + qs.length;
-        decEl.className = 'now-decade idle'; decEl.textContent = '년대와 난이도를 선택하세요';
-        lvEl.hidden = true;
-        ptsEl.innerHTML = done >= qs.length ? '모든 문제가 끝났습니다' : '&nbsp;';
-        pad.setHighlight(-1);
+        noEl.textContent = '문제 번호를 선택하세요';
+        ansEl.className = 'song-ans'; ansEl.textContent = '';
+        revealBtn.textContent = '정답 보기'; revealBtn.disabled = true;
       }
       cells.forEach(function (c, i) {
         c.classList.toggle('on', i === idx);
-        c.classList.toggle('used', !!used[i]);
-        c.disabled = !!used[i];
+        c.classList.toggle('used', !!used[i] && i !== idx);
+        c.disabled = !!used[i] && i !== idx;
       });
-      undoPick.disabled = idx < 0;
-      resetPick.disabled = !done;
-      var list = Object.keys(used).map(Number);
-      Store.setSong(idx, list);
+      resetBtn.disabled = !Object.keys(used).length && idx < 0;
+      Store.setSong(idx, Object.keys(used).map(Number));
     }
     show();
-    /* 전체 초기화를 누르면 고른 칸도 같이 풀림 */
+    /* 전체 초기화를 누르면 고른 문제도 같이 풀림 */
     Store.on(function () {
-      if (Store.s.songIdx === -1 && !(Store.s.songUsed || []).length && (idx !== -1 || Object.keys(used).length)) { used = {}; idx = -1; show(); }
+      if (Store.s.songIdx === -1 && !(Store.s.songUsed || []).length && (idx !== -1 || Object.keys(used).length)) { used = {}; idx = -1; revealed = false; show(); }
     });
   });
 
@@ -1486,11 +1525,27 @@ window.RECREATION = {
     var T = D.telepathy, GROUPS = 2;
     root.innerHTML = head({ tag: T.tag, no: T.no, title: T.title }) +
       '<div class="cols wide-left">' +
-      '<div class="card play"><div class="tel-grid" id="telGrid"></div><div class="tel-sum" id="telSum"></div>' +
+      '<div class="card play"><div class="think" id="thinkBox"><span class="think-lab">생각 시간</span><span class="time" id="thinkTime">00:10</span><span class="think-btns"></span></div>' +
+      '<div class="tel-grid" id="telGrid"></div><div class="tel-sum" id="telSum"></div>' +
       '<div class="btn-row" id="telBtns"></div></div>' +
       '<div class="pad-slot"></div></div>';
 
     var grid = $('#telGrid', root), sum = $('#telSum', root), btns = $('#telBtns', root);
+
+    /* 생각 시간 타이머 (제시어를 말한 뒤 째깍째깍) */
+    var thinkSec = T.thinkSeconds || 10, thinkBtn;
+    var think = createTimer({
+      display: $('#thinkTime', root), seconds: thinkSec,
+      onTick: function (left) { tick(left <= 3); },
+      onState: function () { if (thinkBtn) thinkBtn.textContent = think.running() ? '멈춤' : (think.left() === 0 ? '다시' : '시작'); }
+    });
+    thinkBtn = button('시작', 'primary', function () {
+      if (think.running()) { think.pause(); return; }
+      if (think.left() === 0) think.reset(thinkSec);
+      think.start();
+    });
+    $('.think-btns', root).append(thinkBtn, button('리셋', 'ghost sm', function () { think.reset(thinkSec); }));
+
     var inputs = [], outs = [], applied = false, lastRes = null;
     D.teams.forEach(function (t, i) {
       var row = el('<div class="tel-team" style="--c:' + esc(t.color) + '"><div class="tt-name"><i class="dot"></i>' + nameTag(i) + '</div></div>');

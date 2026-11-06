@@ -572,6 +572,80 @@ input, textarea { text-align: center; }
 .song-main .song-ans.open { font-size: clamp(2.2rem, min(6cqw, 12cqh), 5.2rem); }
 .song-main .song-ans.open.long { font-size: clamp(1.7rem, min(3.6cqw, 7.5cqh), 3.2rem); }
 
+/* ===== 이심전심: 준비! 상태 ===== */
+.big-word.ready, .word-card .word.ready { color: var(--muted); }
+
+/* ===== 연습 페이지 ===== */
+.ico { width: 3.6rem; height: 3.6rem; color: var(--amber); flex: none; }
+.practice { align-items: stretch; }
+.practice > .card { justify-content: center; }
+.practice h3 { margin-bottom: 8px; }
+.step-imgs { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(6px, 1.6cqh, 14px); }
+.step-imgs li { display: flex; align-items: center; gap: 14px; text-align: left; padding: 6px 10px; border-radius: 14px; background: rgba(255, 255, 255, .06); }
+.si-ico { display: grid; place-items: center; width: 4.2rem; height: 4.2rem; border-radius: 14px; background: rgba(255, 255, 255, .06); flex: none; }
+.si-ico .ico { width: 3.2rem; height: 3.2rem; }
+.si-txt { font-size: 1.15rem; line-height: 1.3; }
+.si-txt b { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; margin-right: 10px; border-radius: 50%; background: var(--amber); color: #15173f; font-size: .9em; }
+.pr-card { align-items: center; text-align: center; gap: clamp(6px, 1.4cqh, 14px); }
+.pr-q { display: grid; gap: 4px; justify-items: center; }
+.pr-hint { color: var(--muted); font-size: 1.05rem; }
+.pr-ans { font-family: var(--display); font-size: clamp(2.4rem, min(5.5cqw, 11cqh), 4.4rem); color: var(--muted); line-height: 1.15; min-height: 1.15em; }
+.pr-ans.open { color: var(--amber); font-size: clamp(1.8rem, min(4cqw, 8cqh), 3.2rem); }
+.ox-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; width: 100%; max-width: 30rem; }
+.ox-list li { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 6px 12px; border-radius: 12px; background: rgba(255, 255, 255, .06); }
+.ox-list .mk { font-weight: 800; font-size: .9rem; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--muted); color: var(--muted); }
+.ox-list li.ok .mk { background: var(--amber); border-color: var(--amber); color: #15173f; }
+.ox-list li.no .ox-t { color: var(--muted); text-decoration: line-through; }
+.fig-list { display: grid; gap: clamp(8px, 2cqh, 18px); }
+.fig-row { display: grid; justify-items: center; gap: 2px; padding: 6px 8px; border-radius: 14px; background: rgba(255, 255, 255, .05); }
+.fig-lab { font-size: 1.15rem; }
+.fig-lab b { margin-left: 10px; color: var(--amber); font-size: 1.3rem; }
+.fig-people { display: flex; gap: clamp(4px, 1cqw, 14px); justify-content: center; }
+.fig .ico { width: clamp(2.6rem, 6cqh, 4rem); height: clamp(2.6rem, 6cqh, 4rem); }
+.fig.same .ico { color: var(--amber); }
+.fig.diff .ico { color: rgba(255, 255, 255, .42); }
+.countdown { font-family: var(--display); font-size: clamp(1.8rem, min(4cqw, 8cqh), 3rem); color: var(--text); min-height: 1.2em; }
+.pr-topic { font-size: 1.2rem; color: var(--muted); }
+.pr-res { font-size: 1.1rem; color: var(--muted); }
+.pr-res b { color: var(--amber); }
+.pr-grid { display: grid; gap: 6px; width: 100%; }
+.pr-team { display: grid; grid-template-columns: auto 1fr 1fr; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 12px; border-left: 5px solid var(--c); background: rgba(255, 255, 255, .05); }
+.pr-cell { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 10px; background: rgba(0, 0, 0, .18); }
+.pc-lab { font-size: .8rem; color: var(--muted); }
+.pc-ans { font-weight: 800; font-size: 1.15rem; }
+.pc-pt { font-weight: 800; font-size: .95rem; min-width: 3.4em; text-align: right; }
+.pr-cell.gain { background: rgba(179, 173, 255, .22); box-shadow: inset 0 0 0 1.5px var(--amber); }
+.pr-cell.gain .pc-pt { color: var(--amber); }
+.pr-cell.dup { opacity: .5; }
+.pr-cell.dup .pc-ans { text-decoration: line-through; }
+.pr-sum { min-height: 1.4em; color: var(--muted); font-size: 1.05rem; }
+.pr-sum b { color: var(--amber); }
+.note-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.note { appearance: none; cursor: pointer; display: grid; align-content: center; justify-items: center; gap: 6px; min-height: clamp(120px, 28cqh, 220px); padding: 12px; border-radius: 6px 18px 6px 18px; border: 1.5px dashed var(--line); background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .05)); color: var(--text); font: inherit; transition: transform .15s; }
+.note:hover { transform: translateY(-3px) rotate(-1deg); }
+.note .n-q { font-family: var(--display); font-size: 3rem; color: var(--amber); line-height: 1; }
+.note .n-no { color: var(--muted); font-size: .9rem; }
+.note.open { border-style: solid; border-color: var(--amber); background: rgba(179, 173, 255, .18); }
+.note .n-kind { color: var(--amber); font-weight: 800; font-size: 1rem; }
+.note .n-text { font-family: var(--display); font-size: clamp(1.1rem, 2.4cqh, 1.6rem); line-height: 1.3; word-break: keep-all; }
+.start-row .btn + .btn { margin-left: 10px; }
+@media (max-height: 740px) {
+  .ico { width: 2.8rem; height: 2.8rem; }
+  .si-ico { width: 3.4rem; height: 3.4rem; }
+  .si-ico .ico { width: 2.6rem; height: 2.6rem; }
+  .si-txt { font-size: 1.02rem; }
+  .step-imgs li { padding: 3px 8px; }
+  .fig-row { padding: 3px 6px; }
+  .pr-ans { font-size: 2.6rem; }
+  .ox-list li { padding: 3px 10px; }
+  .pr-cell { padding: 2px 8px; }
+}
+@media (max-width: 860px) { .note-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.ico.wide { width: 4.6rem; }
+.si-ico:has(.wide) { width: 5.6rem; }
+@media (max-height: 740px) { .ico.wide { width: 3.6rem; } .si-ico:has(.wide) { width: 4.4rem; } }
+
 </style>
 </head>
 <body>
@@ -683,6 +757,18 @@ window.RECREATION = {
     ],
     scoringTitle: "점수",
     scoring: ["정답을 맞힌 팀에게 진행자가 점수를 부여합니다."],
+    /* 연습 페이지 (본 게임 전에 규칙을 보여주는 예시) */
+    practice: {
+      title: "연습 문제",
+      steps: ["전주를 듣는다", "가장 먼저 팀명을 외친다", "“가수 이름 - 노래 제목” 순서로 답한다"],
+      sample: "아이유 - 좋은 날",
+      examples: [
+        { text: "아이유 - 좋은 날", ok: true },
+        { text: "좋은 날 - 아이유", ok: false },
+        { text: "좋은 날", ok: false },
+        { text: "아이유", ok: false }
+      ]
+    },
     questions: [
       "박진영 - 허니",
       "김건모 - 잘못된 만남",
@@ -695,7 +781,7 @@ window.RECREATION = {
       "여자친구 - 시간을 달려서",
       "멜로망스 - 선물",
       "투모로우바이투게더 - 9와 4분의 3 승강장에서 너를 기다려",
-      "세븐틴 - 만세",
+      "소유 & 정기고 - 썸",
       "아이브 - LOVE DIVE",
       "아이유 - 에잇",
       "비비 - 밤양갱",
@@ -731,6 +817,16 @@ window.RECREATION = {
       ["모두 다름", "0점"]
     ],
     scoringNote: "※ 4명인 팀은 사회자 한 명이 함께 동작을 취해 5명 기준으로 계산합니다.",
+    /* 연습 페이지: 연습 제시어와 점수 그림 예시 */
+    practice: {
+      words: ["고양이", "슈퍼맨", "기타"],
+      /* 같은 동작을 취한 인원 예시 (그림). groups: 같은 글자 = 같은 동작 */
+      figures: [
+        { label: "모두 같음", pts: "50점", groups: "AAAAA" },
+        { label: "3명 같음", pts: "30점", groups: "AAABC" },
+        { label: "모두 다름", pts: "0점", groups: "ABCDE" }
+      ]
+    },
     padSteps: [10, 20, 30, 40, 50],
     sets: [
       { name: "제시어 A", words: ["원숭이", "아이언맨", "좀비", "농구", "장구", "로봇", "달리기", "발레", "손흥민", "애교"] },
@@ -788,6 +884,16 @@ window.RECREATION = {
     topicsNote: "주제별 단어 20개",
     seconds: 120,
     allCorrectBonus: 20,
+    /* 연습 페이지 */
+    practice: {
+      steps: ["설명자만 단어를 확인한다", "몸짓으로 설명한다", "팀원들이 정답을 외친다", "맞히면 다음 설명자로 교체"],
+      words: [
+        { topic: "동물", word: "하마" },
+        { topic: "운동", word: "야구" },
+        { topic: "영화", word: "슈렉" },
+        { topic: "속담", word: "배보다 배꼽이 더 크다" }
+      ]
+    },
     padSteps: [10, 20, 30],
     categories: [
       { name: "동물", words: ["코끼리", "펭귄", "기린", "캥거루", "고릴라", "악어", "나무늘보", "공작새", "문어", "토끼", "사자", "뱀", "독수리", "거북이", "닭", "개구리", "박쥐", "곰", "오리", "낙타"] },
@@ -815,6 +921,12 @@ window.RECREATION = {
       "답변을 공개한 뒤, 중복되지 않은 답을 고른 조에 점수를 줍니다."
     ],
     thinkSeconds: 10,   /* 제시어를 말한 뒤 주는 생각 시간(초) */
+    /* 연습 페이지: 8개 조의 예시 답변 (A-1, A-2, B-1, B-2, C-1, C-2, D-1, D-2 순서) */
+    practice: {
+      steps: ["제시어를 듣고 10초 동안 생각한다", "조별 답변을 사회자에게 제출한다", "답변을 공개하고 중복을 확인한다"],
+      prompt: "여름",
+      answers: ["바다", "수박", "바다", "에어컨", "휴가", "바다", "수박", "빙수"]
+    },
     scoringTitle: "점수",
     formula: ["점수 = (조 수 + 1", "− 중복되지 않은 답변 수) × 10점"],
     scoringNotes: [
@@ -843,6 +955,15 @@ window.RECREATION = {
       { name: "미션 수행", desc: "성공하면 +점수" },
       { name: "보너스",   desc: "추가 점수 기회" }
     ],
+    /* 연습 페이지: 예시 쪽지 (눌러서 뒤집어 보기) */
+    practice: {
+      steps: ["쪽지를 찾는다", "사회자에게 제출한다", "점수를 받는다"],
+      notes: [
+        { kind: "즉시 점수", text: "+30점" },
+        { kind: "미션 수행", text: "다른 팀 선배와 하트 포즈로 인증샷" },
+        { kind: "보너스", text: "벌칙 면제권" }
+      ]
+    },
     padSteps: [10, 30, 50],
     minutes: 15
   },
@@ -1200,7 +1321,59 @@ window.RECREATION = {
     if (tp) cards.push(infoCard(G.topicsTitle || '주제 구성', tp));
     root.innerHTML = head({ tag: G.tag, no: G.no, title: G.title }) +
       '<div class="info-grid n' + cards.length + '">' + cards.join('') + '</div><div class="start-row"></div>';
-    $('.start-row', root).append(button('게임 시작 ›', 'primary lg', function () { go(cur + 1); }));
+    startRow($('.start-row', root), o.practice);
+  }
+  /* 시작 화면 버튼: 연습 페이지가 있으면 [연습 해보기] + [바로 시작] */
+  function startRow(row, hasPractice) {
+    if (hasPractice) {
+      row.append(button('연습 해보기 ›', 'primary lg', function () { go(cur + 1); }),
+                 button('바로 시작', 'ghost', function () { go(cur + 2); }));
+    } else {
+      row.append(button('게임 시작 ›', 'primary lg', function () { go(cur + 1); }));
+    }
+  }
+
+  /* ---------------------------------------------------------------
+   *  연습 페이지용 그림(SVG)과 공통 조각
+   * ------------------------------------------------------------- */
+  function ico(inner) {
+    return '<svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+  }
+  var POSES = {
+    v: 'M32 26L18 10M32 26L46 10', t: 'M32 26L14 26M32 26L50 26', right: 'M32 26L48 10M32 26L20 36',
+    left: 'M32 26L16 10M32 26L44 36', down: 'M32 26L20 42M32 26L44 42'
+  };
+  function person(pose) {
+    return ico('<circle cx="32" cy="12" r="7"/><path d="M32 19V40M32 40L24 58M32 40L40 58"/><path d="' + POSES[pose] + '"/>');
+  }
+  function bubble(txt, size) {
+    return '<svg class="ico wide" viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M12 6h72a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H44L30 58V46H12a8 8 0 0 1-8-8V14a8 8 0 0 1 8-8z"/>' +
+      '<text x="48" y="' + (size > 14 ? 33 : 31) + '" text-anchor="middle" font-size="' + (size || 14) + '" stroke="none" fill="currentColor" font-weight="700">' + esc(txt) + '</text></svg>';
+  }
+  var ICON = {
+    phone: ico('<rect x="19" y="5" width="26" height="54" rx="6"/><path d="M28 51h8"/><circle cx="29" cy="38" r="3.5"/><circle cx="38.5" cy="35" r="3.5"/><path d="M32.5 38V22l9.5-3v16"/>'),
+    peek: ico('<rect x="8" y="12" width="48" height="40" rx="6"/><path d="M16 32c6-9 26-9 32 0c-6 9-26 9-32 0z"/><circle cx="32" cy="32" r="4"/>'),
+    swap: ico('<path d="M12 24h38l-8-8M52 42H14l8 8"/>'),
+    search: ico('<circle cx="27" cy="27" r="16"/><path d="M39 39l17 17"/>'),
+    give: ico('<path d="M6 36h32"/><path d="M30 26l10 10-10 10"/><path d="M46 14h12v36H46z"/>'),
+    plus: ico('<circle cx="32" cy="32" r="22"/><path d="M32 20v24M20 32h24"/>'),
+    think: ico('<path d="M18 40a12 12 0 0 1 2-23 15 15 0 0 1 28 4 11 11 0 0 1-2 19z"/><circle cx="22" cy="50" r="3"/><circle cx="14" cy="58" r="1.8"/>'),
+    mail: ico('<rect x="8" y="14" width="48" height="36" rx="5"/><path d="M10 18l22 18 22-18"/>'),
+    cards: ico('<rect x="8" y="14" width="22" height="32" rx="4"/><rect x="34" y="18" width="22" height="32" rx="4"/><path d="M14 30h10M40 34h10"/>')
+  };
+  /* 단계 그림 목록: steps[i] 글자 + icons[i] 그림 */
+  function stepImgs(steps, icons) {
+    return '<ol class="step-imgs">' + steps.map(function (t, i) {
+      return '<li><span class="si-ico">' + icons[i] + '</span><span class="si-txt"><b>' + (i + 1) + '</b>' + esc(t) + '</span></li>';
+    }).join('') + '</ol>';
+  }
+  function practiceHead(G, extra) {
+    return head({ tag: 'PRACTICE', no: G.no, title: G.title + ' 연습', subtitle: extra || '' });
+  }
+  function practiceStart(root) {
+    root.insertAdjacentHTML('beforeend', '<div class="start-row"></div>');
+    $('.start-row:last-child', root).append(button('본 게임 시작 ›', 'primary lg', function () { go(cur + 1); }));
   }
 
   /* ===============================================================
@@ -1248,7 +1421,28 @@ window.RECREATION = {
 
   /* ================= GAME 01 노래 퀴즈 ================= */
   section('song', '노래 퀴즈', function (root) {
-    infoSlide(root, D.song);
+    infoSlide(root, D.song, { practice: true });
+  });
+
+  section('song-practice', null, function (root) {
+    var S = D.song, P = S.practice;
+    root.innerHTML = practiceHead(S) +
+      '<div class="cols practice">' +
+      '<div class="card"><h3>이렇게 진행해요</h3>' +
+      stepImgs(P.steps, [ICON.phone, person('v'), bubble('가수 - 제목')]) + '</div>' +
+      '<div class="card pr-card"><h3>' + esc(P.title) + '</h3>' +
+      '<div class="pr-q"><div class="pr-hint">♪ 전주 재생 중…</div><div class="pr-ans" id="prAns">?</div></div>' +
+      '<div class="btn-row"><span id="prBtn"></span></div>' +
+      '<ul class="ox-list">' + P.examples.map(function (e) {
+        return '<li class="' + (e.ok ? 'ok' : 'no') + '"><span class="mk">' + (e.ok ? '정답' : '오답') + '</span><span class="ox-t">' + esc(e.text) + '</span></li>';
+      }).join('') + '</ul></div></div>';
+    var shown = false, ans = $('#prAns', root);
+    var b = button('정답 공개', 'primary', function () {
+      shown = !shown; ans.textContent = shown ? P.sample : '?'; ans.classList.toggle('open', shown);
+      b.textContent = shown ? '정답 가리기' : '정답 공개'; animIn(ans);
+    });
+    $('#prBtn', root).append(b);
+    practiceStart(root);
   });
 
   section('song-play', null, function (root) {
@@ -1320,7 +1514,48 @@ window.RECREATION = {
 
   /* ================= GAME 02 이심전심 ================= */
   section('simsim', '이심전심', function (root) {
-    infoSlide(root, D.simsim);
+    infoSlide(root, D.simsim, { practice: true });
+  });
+
+  section('simsim-practice', null, function (root) {
+    var S = D.simsim, P = S.practice;
+    var POSE_OF = { A: 'v', B: 't', C: 'right', D: 'down', E: 'left' };
+    var figs = P.figures.map(function (f) {
+      var cnt = {}; f.groups.split('').forEach(function (g) { cnt[g] = (cnt[g] || 0) + 1; });
+      return '<div class="fig-row"><div class="fig-lab">' + esc(f.label) + '<b>' + esc(f.pts) + '</b></div><div class="fig-people">' +
+        f.groups.split('').map(function (g) { return '<span class="fig ' + (cnt[g] > 1 ? 'same' : 'diff') + '">' + person(POSE_OF[g]) + '</span>'; }).join('') +
+        '</div></div>';
+    }).join('');
+    root.innerHTML = practiceHead(S) +
+      '<div class="cols practice">' +
+      '<div class="card"><h3>같은 동작을 취한 인원수만큼 점수</h3><div class="fig-list">' + figs + '</div></div>' +
+      '<div class="card stage-card pr-card"><div class="stage-top"><span class="set-name">연습 제시어</span><span class="counter" id="prCnt"></span></div>' +
+      '<div class="big-word" id="prWord"></div><div class="countdown" id="prCd">&nbsp;</div>' +
+      '<div class="btn-row" id="prBtns"></div></div></div>';
+    var i = 0, shown = false, timers = [];
+    var wordEl = $('#prWord', root), cd = $('#prCd', root), cnt = $('#prCnt', root);
+    function clearCd() { timers.forEach(clearTimeout); timers = []; cd.innerHTML = '&nbsp;'; }
+    var reveal = button('단어 보기', 'ok lg', function () { shown = !shown; clearCd(); paint(true); });
+    var go3 = button('하나, 둘, 셋!', 'primary lg', function () {
+      clearCd();
+      ['하나', '둘', '셋!', '동작!'].forEach(function (t, k) {
+        timers.push(setTimeout(function () { cd.textContent = t; animIn(cd); tick(k >= 2); }, k * 800));
+      });
+      timers.push(setTimeout(clearCd, 4200));
+    });
+    var next = button('다음 연습 ›', 'ghost lg', function () { i = (i + 1) % P.words.length; shown = false; clearCd(); paint(true); });
+    $('#prBtns', root).append(reveal, go3, next);
+    function paint(anim) {
+      cnt.textContent = (i + 1) + ' / ' + P.words.length;
+      wordEl.textContent = shown ? P.words[i] : '준비!';
+      wordEl.classList.toggle('ready', !shown);
+      reveal.textContent = shown ? '단어 가리기' : '단어 보기';
+      go3.disabled = !shown;
+      if (anim) animIn(wordEl);
+    }
+    paint(false);
+    practiceStart(root);
+    return function () { clearCd(); };
   });
 
   section('simsim-play', null, function (root) {
@@ -1335,11 +1570,13 @@ window.RECREATION = {
 
     var pick = $('#simPick', root), stage = $('#simStage', root);
     var wordEl = $('#simWord', root), nameEl = $('#simSetName', root), cntEl = $('#simCounter', root);
-    var cur = 0, setIdx = 0, doneSets = {};
+    var cur = 0, setIdx = 0, doneSets = {}, shown = false;
     var prev = button('‹ 이전', 'ghost lg', function () { cur = Math.max(0, cur - 1); render(); });
     var next = button('다음 제시어 ›', 'primary lg', function () { cur = Math.min(S.sets[setIdx].words.length - 1, cur + 1); render(); });
     var back = button('묶음 선택으로', 'ghost', function () { view('pick'); });
-    $('.btn-row', stage).append(back, prev, next);
+    /* 다음 제시어로 넘어가면 "준비!"만 보이고, 이 버튼을 눌러야 단어가 나타남 */
+    var reveal = button('단어 보기', 'ok lg', function () { shown = !shown; paintWord(true); });
+    $('.btn-row', stage).append(back, prev, reveal, next);
     $('.pad-slot', stage).append(scorePad('simsim', S.padSteps, '이심전심 점수 (같은 동작 인원수 x ' + UNIT + ')'));
 
     var setBtns = [];
@@ -1365,11 +1602,17 @@ window.RECREATION = {
       var words = S.sets[setIdx].words;
       nameEl.textContent = S.sets[setIdx].name;
       cntEl.textContent = (cur + 1) + ' / ' + words.length;
-      wordEl.textContent = words[cur];
-      animIn(wordEl);
+      shown = false; paintWord(true);
       prev.disabled = cur === 0;
       next.disabled = cur === words.length - 1;
       if (cur === words.length - 1) doneSets[setIdx] = true;
+    }
+    function paintWord(anim) {
+      var words = S.sets[setIdx].words;
+      wordEl.textContent = shown ? words[cur] : '준비!';
+      wordEl.classList.toggle('ready', !shown);
+      reveal.textContent = shown ? '단어 가리기' : '단어 보기';
+      if (anim) animIn(wordEl);
     }
     paintSets();
   });
@@ -1405,7 +1648,46 @@ window.RECREATION = {
 
   /* ================= GAME 03 몸으로 말해요 ================= */
   section('charades', '몸으로 말해요', function (root) {
-    infoSlide(root, D.charades);
+    infoSlide(root, D.charades, { practice: true });
+  });
+
+  section('charades-practice', null, function (root) {
+    var C = D.charades, P = C.practice;
+    root.innerHTML = practiceHead(C) +
+      '<div class="cols practice">' +
+      '<div class="card"><h3>이렇게 진행해요</h3>' +
+      stepImgs(P.steps, [ICON.peek, person('right'), bubble('정답!', 20), ICON.swap]) + '</div>' +
+      '<div class="card pr-card"><h3>연습 단어</h3>' +
+      '<div class="pr-topic" id="prTopic"></div>' +
+      '<div class="word-card hide" id="prCard"><div class="word" id="prWord"></div></div>' +
+      '<div class="pr-res" id="prRes"></div>' +
+      '<div class="btn-row" id="prBtns"></div></div></div>';
+    var i = 0, shown = false, ok = 0, ended = false;
+    var topic = $('#prTopic', root), card = $('#prCard', root), wordEl = $('#prWord', root), res = $('#prRes', root), btns = $('#prBtns', root);
+    var peek = button('단어 보기 (설명자만)', 'ghost', function () { shown = !shown; paint(); });
+    var yes = button('정답', 'ok lg', function () { ok++; step(); });
+    var pass = button('패스', 'ghost lg', function () { step(); });
+    var again = button('다시 연습', 'primary lg', function () { i = 0; ok = 0; ended = false; shown = false; paint(); });
+    function step() { i++; shown = false; if (i >= P.words.length) ended = true; paint(); }
+    function paint() {
+      btns.innerHTML = '';
+      if (ended) {
+        topic.textContent = '연습 끝!';
+        wordEl.textContent = ok + '개 정답';
+        card.classList.remove('hide');
+        res.innerHTML = '정답 1개당 <b>' + UNIT + '점</b> → <b>' + (ok * UNIT) + '점</b>';
+        btns.append(again);
+        return;
+      }
+      topic.textContent = P.words[i].topic + '  (' + (i + 1) + ' / ' + P.words.length + ')';
+      wordEl.textContent = P.words[i].word;
+      card.classList.toggle('hide', !shown);
+      peek.textContent = shown ? '단어 가리기' : '단어 보기 (설명자만)';
+      res.innerHTML = '지금까지 정답 <b>' + ok + '개</b>';
+      btns.append(peek, yes, pass);
+    }
+    paint();
+    practiceStart(root);
   });
 
   section('charades-play', null, function (root) {
@@ -1538,7 +1820,45 @@ window.RECREATION = {
       '<div class="ex"><p class="muted">예시: ' + order.map(function (a) { return esc(a) + ' ' + tally[a] + '조'; }).join(' / ') + '</p>' +
       '<p>(' + ex.base + ' − 중복 없는 답 ' + ex.uniq + '개) × ' + UNIT + ' = <b>' + ex.pts + '점</b>' +
       (uniq.length ? ' (' + uniq.map(esc).join(', ') + ' 조 획득)' : '') + '</p></div>';
-    infoSlide(root, T, { scoringHtml: scoring });
+    infoSlide(root, T, { scoringHtml: scoring, practice: true });
+  });
+
+  section('telepathy-practice', null, function (root) {
+    var T = D.telepathy, P = T.practice, GROUPS = 2;
+    var r = calcTelepathy(P.answers);
+    root.innerHTML = practiceHead(T) +
+      '<div class="cols practice">' +
+      '<div class="card"><h3>이렇게 진행해요</h3>' + stepImgs(P.steps, [ICON.think, ICON.mail, ICON.cards]) + '</div>' +
+      '<div class="card pr-card"><h3>연습: 제시어 “' + esc(P.prompt) + '”</h3>' +
+      '<div class="pr-grid" id="prGrid"></div><div class="pr-sum" id="prSum">&nbsp;</div>' +
+      '<div class="btn-row" id="prBtns"></div></div></div>';
+    var grid = $('#prGrid', root), cells = [];
+    D.teams.forEach(function (t, i) {
+      var row = el('<div class="pr-team" style="--c:' + esc(t.color) + '"><i class="dot"></i></div>');
+      for (var k = 0; k < GROUPS; k++) {
+        var e = i * GROUPS + k;
+        var c = el('<div class="pr-cell"><span class="pc-lab">' + grpTag(i, k) + '</span><span class="pc-ans">?</span><span class="pc-pt"></span></div>');
+        cells.push(c); row.append(c);
+      }
+      grid.append(row);
+    });
+    var shown = false, sum = $('#prSum', root);
+    var b = button('답변 공개', 'primary lg', function () { shown = !shown; paint(); });
+    $('#prBtns', root).append(b);
+    function paint() {
+      cells.forEach(function (c, e) {
+        c.classList.toggle('open', shown);
+        c.classList.toggle('dup', shown && !!r.dup[e]);
+        c.classList.toggle('gain', shown && r.per[e] > 0);
+        $('.pc-ans', c).textContent = shown ? P.answers[e] : '?';
+        $('.pc-pt', c).textContent = shown ? (r.dup[e] ? '중복 0점' : '+' + r.per[e]) : '';
+        c.style.animationDelay = (e * 70) + 'ms';
+        if (shown) animIn(c);
+      });
+      sum.innerHTML = shown ? '(' + r.base + ' − 중복 없는 답 ' + r.uniq + '개) × ' + UNIT + ' = <b>' + r.pts + '점</b> (중복 없는 조만 획득)' : '&nbsp;';
+      b.textContent = shown ? '다시 가리기' : '답변 공개';
+    }
+    practiceStart(root);
   });
 
   section('telepathy-play', null, function (root) {
@@ -1621,7 +1941,25 @@ window.RECREATION = {
       '<div class="kind-grid big">' + T.kinds.map(function (k) {
         return '<div class="kind"><div class="k-name">' + esc(k.name) + '</div><div class="k-desc">' + esc(k.desc) + '</div></div>';
       }).join('') + '</div><div class="start-row"></div>';
-    $('.start-row', root).append(button('게임 시작 ›', 'primary lg', function () { go(cur + 1); }));
+    startRow($('.start-row', root), true);
+  });
+
+  section('treasure-practice', null, function (root) {
+    var T = D.treasure, P = T.practice;
+    root.innerHTML = practiceHead(T) +
+      '<div class="cols practice">' +
+      '<div class="card"><h3>이렇게 진행해요</h3>' + stepImgs(P.steps, [ICON.search, ICON.give, ICON.plus]) + '</div>' +
+      '<div class="card pr-card"><h3>예시 쪽지 (눌러서 열어 보세요)</h3><div class="note-grid" id="noteGrid"></div></div></div>';
+    P.notes.forEach(function (n, i) {
+      var b = button('', 'note', function () {
+        var open = b.classList.toggle('open');
+        b.innerHTML = open ? '<span class="n-kind">' + esc(n.kind) + '</span><span class="n-text">' + esc(n.text) + '</span>' : '<span class="n-q">?</span><span class="n-no">' + (i + 1) + '</span>';
+        animIn(b);
+      });
+      b.innerHTML = '<span class="n-q">?</span><span class="n-no">' + (i + 1) + '</span>';
+      $('#noteGrid', root).append(b);
+    });
+    practiceStart(root);
   });
 
   section('treasure-play', null, function (root) {
